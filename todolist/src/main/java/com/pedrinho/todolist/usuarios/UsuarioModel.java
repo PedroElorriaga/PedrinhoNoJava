@@ -1,4 +1,4 @@
-package com.pedrinho.todolist.models;
+package com.pedrinho.todolist.usuarios;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

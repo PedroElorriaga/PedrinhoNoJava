@@ -1,8 +1,7 @@
-package com.pedrinho.todolist.interfaces;
+package com.pedrinho.todolist.usuarios;
 
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.pedrinho.todolist.models.UsuarioModel;
 
 public interface IUsuarioRepository extends JpaRepository<UsuarioModel, UUID> {
     UsuarioModel findByUsername(String username); // INTERFACE PARA BUSCAR NOME

@@ -1,4 +1,4 @@
-package com.pedrinho.todolist.models;
+package com.pedrinho.todolist.tarefas;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -22,7 +22,6 @@ public class TaskModel {
 
     private String descricao;
     private String titulo;
-    private LocalDate dataInicio;
 
     @CreationTimestamp
     private LocalDate startAt;

@@ -1,4 +1,4 @@
-package com.pedrinho.todolist.controller;
+package com.pedrinho.todolist.usuarios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.pedrinho.todolist.interfaces.IUsuarioRepository;
-import com.pedrinho.todolist.models.UsuarioModel;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
