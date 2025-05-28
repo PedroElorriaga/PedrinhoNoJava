@@ -37,21 +37,26 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario criado com sucesso");
     }
 
-    @PostMapping("/login")
-    public ResponseEntity loginUsuario(@RequestBody UsuarioModel usuarioModel) {
-        var userFromDb = this.usuarioRepository.findByUsername(usuarioModel.getUsername());
+    // @PostMapping("/login")
+    // public ResponseEntity loginUsuario(@RequestBody UsuarioModel usuarioModel) {
+    // var userFromDb =
+    // this.usuarioRepository.findByUsername(usuarioModel.getUsername());
 
-        if (userFromDb == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao existe");
-        }
+    // if (userFromDb == null) {
+    // return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao
+    // existe");
+    // }
 
-        BCrypt.Result passwordDecrypt = BCrypt.verifyer().verify(usuarioModel.getPassword().toCharArray(),
-                userFromDb.getPassword().toCharArray());
+    // BCrypt.Result passwordDecrypt =
+    // BCrypt.verifyer().verify(usuarioModel.getPassword().toCharArray(),
+    // userFromDb.getPassword().toCharArray());
 
-        if (!passwordDecrypt.verified) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario ou senha invalidos");
-        }
+    // if (!passwordDecrypt.verified) {
+    // return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario ou senha
+    // invalidos");
+    // }
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Usuario logado com sucesso!");
-    }
+    // return ResponseEntity.status(HttpStatus.ACCEPTED).body("Usuario logado com
+    // sucesso!");
+    // }
 }
