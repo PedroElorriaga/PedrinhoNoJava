@@ -1,6 +1,7 @@
 package com.pedrinho.todolist.tarefas;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,5 +28,5 @@ public class TaskModel {
     private LocalDate endAt;
 
     @CreationTimestamp
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 }

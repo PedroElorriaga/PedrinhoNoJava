@@ -71,6 +71,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
                     response.sendError(401);
                 } else {
                     request.setAttribute("idUsuario", usuarioFromDb.getId()); // PASSO ESSA INFORMAÇÃO PARA O REQUEST
+                    request.setAttribute("createAt", usuarioFromDb.getCreateAt());
                     filterChain.doFilter(request, response);
                 }
             }

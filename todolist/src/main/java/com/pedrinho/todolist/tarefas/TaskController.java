@@ -1,6 +1,7 @@
 package com.pedrinho.todolist.tarefas;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/tasks")
@@ -46,6 +49,19 @@ public class TaskController {
         Object idUsuario = request.getAttribute("idUsuario");
         List<TaskModel> usuariosFromDb = this.taskRepository.findByIdUsuario((UUID) idUsuario);
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuariosFromDb);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuariosFromDb); // JA RETORNA LISTA DE JSON TASKS
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity putTaskUpdate(@RequestBody TaskModel taskModel, HttpServletRequest request,
+            @PathVariable UUID id) {
+        Object idUsuario = request.getAttribute("idUsuario");
+        Object createAt = request.getAttribute("createAt");
+        taskModel.setIdUsuario((UUID) idUsuario);
+        taskModel.setId(id);
+        taskModel.setCreatedAt((LocalDateTime) createAt);
+
+        this.taskRepository.save(taskModel);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(taskModel);
     }
 }
