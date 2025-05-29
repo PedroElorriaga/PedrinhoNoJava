@@ -23,7 +23,9 @@ public class TaskModel {
     private String descricao;
     private String titulo;
 
-    @CreationTimestamp
     private LocalDate startAt;
-    private String endAt;
+    private LocalDate endAt;
+
+    @CreationTimestamp
+    private LocalDate createdAt;
 }

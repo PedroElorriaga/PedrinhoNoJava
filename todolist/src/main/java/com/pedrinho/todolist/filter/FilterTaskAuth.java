@@ -29,8 +29,8 @@ public class FilterTaskAuth extends OncePerRequestFilter {
 
         String serverletPath = request.getServletPath();
 
-        // MIDDLEWARE SETADO PARA /tasks/create
-        if (serverletPath.equals("/tasks/create")) {
+        // MIDDLEWARE SETADO PARA TODAS ROTAS QUE CONTÉM /tasks
+        if (serverletPath.contains("/tasks")) {
             String autorizacao = request.getHeader("Authorization"); // PEGAMOS AS INFORMAÇÕES DO HEADER SOBRE AUTH
             String autorizacaoHash = autorizacao.split(" ")[1]; // SEPARAMOS O RETORNO PARA NOS RETORNAR SOMENTE O BYTE
                                                                 // ex:
@@ -59,23 +59,23 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             String username = autorizacaoList[0];
             String password = autorizacaoList[1];
 
-            UsuarioModel userFromDb = this.usuarioRepository.findByUsername(username);
+            UsuarioModel usuarioFromDb = this.usuarioRepository.findByUsername(username);
 
-            if (userFromDb == null) {
+            if (usuarioFromDb == null) {
                 response.sendError(401);
             } else {
                 BCrypt.Result passwordDecrypt = BCrypt.verifyer().verify(password.toCharArray(),
-                        userFromDb.getPassword().toCharArray());
+                        usuarioFromDb.getPassword().toCharArray());
 
                 if (!passwordDecrypt.verified) {
                     response.sendError(401);
+                } else {
+                    request.setAttribute("idUsuario", usuarioFromDb.getId()); // PASSO ESSA INFORMAÇÃO PARA O REQUEST
+                    filterChain.doFilter(request, response);
                 }
-
-                filterChain.doFilter(request, response);
             }
         } else {
             filterChain.doFilter(request, response);
         }
     }
-
 }

@@ -23,9 +23,9 @@ public class UsuarioController {
         // String password = usuarioModel.getPassword();
 
         // return "Username " + username + " password " + password;
-        var userFromDb = this.usuarioRepository.findByUsername(usuarioModel.getUsername());
+        var usuarioFromDb = this.usuarioRepository.findByUsername(usuarioModel.getUsername());
 
-        if (userFromDb != null) {
+        if (usuarioFromDb != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario ja existe");
         }
 
